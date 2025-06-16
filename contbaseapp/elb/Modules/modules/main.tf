@@ -2,17 +2,19 @@ provider "aws" {
   region = "ap-south-1"
 }
 resource "aws_elb" "corporateproject" {
-  name               = var.name
-  subnets            = var.subnets
-  security_groups    = var.security_groups
-  instances          = var.instances
+  name            = var.name
+  subnets         = var.subnets
+  security_groups = var.security_groups
+  instances       = var.instances
 
-  listener {
-    count             = length(var.listener)
-    instance_port     = var.listener[count.index].instance_port
-    instance_protocol = var.listener[count.index].instance_protocol
-    lb_port           = var.listener[count.index].lb_port
-    lb_protocol       = var.listener[count.index].lb_protocol
+  dynamic "listener" {
+    for_each = var.listener
+    content {
+      instance_port     = listener.value.instance_port
+      instance_protocol = listener.value.instance_protocol
+      lb_port           = listener.value.lb_port
+      lb_protocol       = listener.value.lb_protocol
+    }
   }
 
   health_check {
@@ -27,4 +29,5 @@ resource "aws_elb" "corporateproject" {
     Name = var.name
   })
 }
+
 

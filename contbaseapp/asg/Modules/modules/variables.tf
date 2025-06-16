@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
-  default     = "ap-south-1
+  default     = "ap-south-1"
 }
 variable "name" {
   type        = string
@@ -49,4 +49,3 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
-

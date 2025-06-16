@@ -1,0 +1,10 @@
+region = "ap-south-1"
+instance_name       = "corporateproject"
+instance_type       = "t2.micro"
+key_name            = "Healthcare"
+enable_monitoring   = true
+security_group_ids  = ["sg-0192ad3bbaf6db2fd"]
+subnet_id           = "subnet-0023a3181c61e2e56"
+environment         = "dev"
+security_group_name = "corporateproject-sg"
+vpc_id = "vpc-0f4ce7cea05eb22e1"

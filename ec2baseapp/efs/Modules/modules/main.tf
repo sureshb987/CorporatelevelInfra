@@ -1,3 +1,4 @@
+
 provider "aws" {
   region = "ap-south-1"
 }
@@ -17,4 +18,3 @@ resource "aws_efs_mount_target" "corporateproject" {
   subnet_id       = var.subnet_ids[count.index]
   security_groups = [var.security_group_id]
 }
-

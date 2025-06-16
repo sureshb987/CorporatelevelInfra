@@ -1,3 +1,5 @@
+
+
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
@@ -30,7 +32,7 @@ variable "ami_id" {
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.large"
+  default     = "t2.medium"
 }
 
 variable "key_name" {
@@ -63,21 +65,30 @@ variable "ssh_user" {
   default     = "ubuntu"
 }
 
-variable "postgres_user" {
-  description = "PostgreSQL username"
+variable "subnet_id" {
+  description = "Subnet ID where the EC2 instance will be launched"
   type        = string
-  default     = "pgadmin"
 }
 
-variable "postgres_password" {
-  description = "PostgreSQL password"
-  type        = string
-  default     = "Test123!"
+variable "security_group_ids" {
+  description = "List of security group IDs to associate with the EC2 instance"
+  type        = list(string)
 }
 
-variable "postgres_db" {
-  description = "PostgreSQL database name"
-  type        = string
-  default     = "corporateproject_db"
+variable "associate_public_ip" {
+  description = "Associate a public IP address with the EC2 instance"
+  type        = bool
+  default     = true
 }
 
+variable "tags" {
+  description = "Common tags to apply to resources"
+  type        = map(string)
+  default     = {
+    Environment = "dev"
+    Project     = "CorporateProject"
+  }
+}
+variable "vpc_id" {
+  type        = string
+}

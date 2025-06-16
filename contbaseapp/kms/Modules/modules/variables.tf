@@ -1,25 +1,28 @@
-variable "key_alias" {
-  type        = string
-  description = "KMS key alias name (e.g., alias/my-key)"
-}
 
 variable "description" {
+  description = "KMS key description"
   type        = string
-  default     = ""
+  default     = "KMS key for CorporateProject"
 }
 
 variable "enable_key_rotation" {
+  description = "Enable key rotation"
   type        = bool
   default     = true
 }
 
-variable "policy" {
+variable "key_alias" {
+  description = "Alias for the KMS key (without 'alias/' prefix)"
   type        = string
-  description = "IAM policy for KMS key"
+  default     = "corporateproject-kms"
 }
 
 variable "tags" {
+  description = "Common tags"
   type        = map(string)
-  default     = {}
+  default     = {
+    Environment = "dev"
+    Project     = "CorporateProject"
+  }
 }
 

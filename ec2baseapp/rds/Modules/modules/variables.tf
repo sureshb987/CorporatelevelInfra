@@ -1,3 +1,4 @@
+
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
@@ -17,50 +18,62 @@ variable "subnet_ids" {
 }
 
 variable "project_name" {
-  description = "Name of the project for tagging"
+  description = "Project name prefix"
   type        = string
-  default     = "CorporateProject"
-}
-
-variable "rds_allowed_cidr_blocks" {
-  description = "CIDR blocks allowed to access RDS"
-  type        = list(string)
-  default     = ["0.0.0.0/0"] # Adjust for security in production
 }
 
 variable "postgres_version" {
   description = "PostgreSQL engine version"
   type        = string
-  default     = "17.4"
+  default     = "15"
 }
 
 variable "instance_class" {
   description = "RDS instance class"
   type        = string
-  default     = "db.t3.medium"
 }
 
 variable "allocated_storage" {
-  description = "Storage size for RDS in GB"
+  description = "Amount of allocated storage in GB"
   type        = number
-  default     = 20
+}
+
+variable "storage_type" {
+  description = "Storage type for the RDS instance"
+  type        = string
 }
 
 variable "db_name" {
-  description = "Name of the database"
+  description = "Name of the database to create"
   type        = string
-  default     = "corporateproject_db"
 }
 
 variable "db_username" {
-  description = "Username for the database"
+  description = "Master username for the DB"
   type        = string
-  default     = "pgadmin"
 }
 
 variable "db_password" {
-  description = "Password for the database"
+  description = "Master password for the DB"
   type        = string
-  default     = "Test123!" # Use secrets manager in production
+  sensitive   = true
 }
 
+variable "db_subnet_group_name" {
+  description = "Name of the DB subnet group"
+  type        = string
+}
+
+variable "security_group_ids" {
+  description = "List of security group IDs"
+  type        = list(string)
+}
+
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(string)
+}
+variable "rds_allowed_cidr_blocks" {
+  description = "List of CIDR blocks allowed to access the RDS instance"
+  type        = list(string)
+}

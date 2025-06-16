@@ -1,10 +1,9 @@
-
 provider "aws" {
   region = "ap-south-1"
 }
 
 
-resource "aws_autoscaling_group" "this" {
+resource "aws_autoscaling_group" "corporateproject" {
   name                      = var.name
   max_size                  = var.max_size
   min_size                  = var.min_size
@@ -37,4 +36,5 @@ resource "aws_autoscaling_group" "this" {
     create_before_destroy = true
   }
 }
+
 
